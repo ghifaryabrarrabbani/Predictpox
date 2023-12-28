@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+  /* Atur tampilan untuk elemen yang akan diatur melalui JavaScript */
+  #video, #capturedImage {
+    width: 640px;
+    height: 480px;
+  }
+  #previewContainer {
+    display: none;
+  }
+  /* Atur gaya lainnya sesuai kebutuhanmu */
+</style>
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>PredictPox</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <!-- <link href="{{url_for('static', filename='img/favicon.png')}}" rel="icon">
+  <link href="{{url_for('static', filename='img/apple-touch-icon.png')}}"rel="apple-touch-icon"> -->
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Vendor CSS Files -->
+  <link href="{{url_for('static', filename='vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('static', filename='vendor/animate.css/animate.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('static', filename='vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
+  <link href="{{url_for('static', filename='vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('static', filename='vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('static', filename='vendor/remixicon/remixicon.css')}}" rel="stylesheet">
+  <link href="{{url_for('static', filename='vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{{url_for('static', filename='css/style.css')}}" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo me-auto"><a href="/">PredictPox</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto" href="/">Beranda</a></li>
+          <li><a class="nav-link scrollto" href="about">Tentang Kami</a></li>
+          <li class="dropdown"><a href="#"><span>Layanan</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="tips">Informasi</a></li>
+              <li><a href="predict">Prediksi</a></li>
+              <li><a href="doctor">Doktor</a></li>
+
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="https://api.whatsapp.com/send/?phone=628561962847&text&type=phone_number&app_absent=0">Hubungi Kami</a></li>
+        </ul>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+
+  <section id="predict" class="predict section-bg">
+    <div class="container">
+
+      <div class="section-title">
+        <h2 >Prediction</h2>
+        <p>Lakukan inputasi berdasarkan gejala yang dimiliki oleh pasien.</p>
+      </div>
+  <form action="/predict" method="POST" enctype="multipart/form-data">
+    <div class="row">
+      <div class="form-group">
+        <select name="sistemik" id="sistemik" class="form-select" required>
+          <option disabled selected>Pilih jenis penyakit sistemik yang anda miliki*
+          </option>
+          <option value="1">Sakit dan nyeri pada otot</option>
+          <option value="2">Pembengkakan kelenjar getah bening</option>
+          <option value="3">Demam</option>
+        </select>
+
+        <div class="form-group mt-3">
+          <select name="dubur" id="dubur" class="form-select" required>
+            <option value="">Apakah dubur anda mengalami kesakitan?</option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
+
+        <div class="form-group mt-3">
+          <select name="tenggorokan" id="tenggorokan" class="form-select" required>
+            <option disabled selected>Apakah tenggorokan anda mengalami kesakitan?</option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
+
+          <div class="form-group mt-3">
+            <select name="penis" id="penis" class="form-select" required>
+              <option disabled selected>Apakah penis anda mengalami kesakitan? (jika perempuan isi dengan No)
+              </option>
+              <option value="0">No</option>
+              <option value="1">Yes</option>
+            </select>
+
+        <div class="form-group mt-3">
+          <select name="lesi_mulut" id="lesi_mulut" class="form-select" required>
+            <option disabled selected>Apakah anda mengalami lesi pada bagian oral?*
+            </option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
+
+          <div class="form-group mt-3">
+            <select name="lesi_soliter" id="lesi_soliter" class="form-select" required>
+              <option disabled selected>Apakah anda tersebut memiliki lesi tunggal saja?*
+              </option>
+              <option value="0">No</option>
+              <option value="1">Yes</option>
+            </select>
+
+            <div class="form-group mt-3">
+              <select name="amandel" id="amandel" class="form-select" required>
+                <option disabled selected>Apakah anda mengalami pembengkakan amandel?*
+                </option>
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+              </select>
+
+              <div class="form-group mt-3">
+                <select name="HIV" id="HIV" class="form-select" required>
+                  <option disabled selected>Apakah anda memiliki riwayat HIV? (pilih tidak jika tidak tahu)
+                  </option>
+                  <option value="0">No</option>
+                  <option value="1">Yes</option>
+                </select>
+
+                <div class="form-group mt-3">
+                  <select name="kelamin" id="kelamin" class="form-select" required>
+                    <option disabled selected>Apakah anda memiliki penyakit kelamin?</option>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                  </select>
+                  <br>
+                  <p style="text-align: center;"><strong>Gunakan salah satu fungsi dibawah ini untuk memasukan foto ruam yang anda miliki (jika ada)</strong></br>
+                  <div class="form-group mt-3" style="display: flex;">
+                    <input class="form-control" type="file" name="gambar" style="flex: 1; margin-right: 10px;">
+                    <div id="pre_take_buttons" style="flex: 1;">
+                      <input type="button" class="form-control" id="input-camera" value="Gunakan Kamera" onClick="enable_camera()">
+                    </div>
+                  </div>
+                  
+                  <div id="my_photo_booth" class="form-group mt-3">
+                    <div id="my_camera" style="display: none;"></div>
+                    <div id="captured_image" style="display: none;"></div>
+                    <br>
+                    <div id="results" style="display:none">
+
+                    </div>
+                    <div id="image-prevew">
+                      <img class="form-control" id ="preview-image" value="" style="display: none;" >
+                  </div>
+                  <div id="capture_buttons" style="display:none">
+                      <input type="button" class="btn btn-success btn-squared" value="CAPTURE" onClick="preview_snapshot()">
+                  </div>
+                  <div id="post_take_buttons" style="display:none">
+                      <input type="button" class="btn btn-danger btn-squared responsive-width" value="RETRY" onClick="retry_capture()">
+                      <input type="button" id="save-button" class="btn btn-success btn-squared responsive-width" value="SAVE" onClick="save_photo()" style="font-weight:bold;">
+                  </div>
+                  <input type="hidden" id="hidden-data-uri" name="hidden-data-uri" value="">
+                          <input class="btn btn-primary d-block mx-auto" type="submit" value="Submit" style="background-color: black; border-color: black; width: max-content; ">
+                </div></div></div></div></div></div></div></div></div></div>
+  </form>
+</section><!-- End Contact Section -->
+<section id="faq" class="faq section-bg">
+  <div class="container">
+
+    <div class="section-title">
+      <h2 style="margin-bottom:0px">Detail Pertanyaan</h2>
+    </div>
+    <p style="text-align: center; color:white;">Detail pertanyaan tersebut berdasarkan pertanyaan yang memiliki tanda <strong>*</strong>.</p>
+    <div class="faq-list">
+      <ul>
+        <li data-aos="fade-up">
+          <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse" data-bs-target="#faq-list-1">Apa itu penyakit Sistemik?<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+          <div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
+            <p>
+              Penyakit sistemik adalah penyakit yang dapat mempengaruhi sistem tubuh secara menyeluruh mencakup berbagai organ dan jaringan yang bekerja bersama untuk menjalankan fungsi-fungsi tubuh yang kompleks.
+            </p>
+          </div>
+        </li>
+
+        <li data-aos="fade-up" data-aos-delay="100">
+          <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">Apa itu lesi bagian oral?<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+          <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
+            <p>
+              Lesi bagian oral adalah abnormalitas yang terjadi di dalam rongga mulut, ex : infeksi, luka, penyakit, sariawan.
+            </p>
+          </div>
+        </li>
+
+        <li data-aos="fade-up" data-aos-delay="100">
+          <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">Apa itu lesi tunggal?<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+          <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
+            <p>
+              Lesi tunggal adalah abnormalitas yang hanya terjadi pada satu lokasi atau area tertentu dalam tubuh atau organ, ex : bercak putih pada lidah, benjolan di pipi, luka di tangan.
+            </p>
+          </div>
+        </li>
+
+        <li data-aos="fade-up" data-aos-delay="100">
+          <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">Bagaimana ciri pembengkakan amandel?<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+          <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
+            <p>
+              Ciri-ciri pembengkakan amandel: Kesulitan menelan, pembesaran amandel, nyeri leher, bengkak di sekitar leher dan rahang, bau nafas.
+            </p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+</main><!-- End #main -->
+
+   <!-- ======= Footer ======= -->
+   <footer id="footer">
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-6 col-md-6 footer-contact">
+        </div>
+      </div>
+    </div>
+
+
+      <div class="social-links text-center text-md-center pt-3 pt-md-0">
+        <a href="#" class="github"><i class="bx bxl-github"></i></a> Kelompok 11 Algoritma Pemrograman II &copy; 2023
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+ 
+
+
+  <!-- Vendor JS Files -->
+  <script src="{{url_for('static',filename='vendor/purecounter/purecounter_vanilla.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/glightbox/js/glightbox.min.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/swiper/swiper-bundle.min.js')}}"></script>
+  <script src="{{url_for('static',filename='vendor/php-email-form/validate.js')}}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{{url_for('static',filename='js/main.js')}}"></script>
+
+  <script src="{{url_for('static', filename='webcam.min.js')}}"></script>
+  <script>
+      var cameraEnabled = false;
+      var photoCaptured = false;
+
+      function enable_camera() {
+          if (!cameraEnabled) {
+              Webcam.set({
+                  width: 320,
+                  height: 240,
+                  dest_width: 640,
+                  dest_height: 480,
+                  crop_width: 480,
+                  crop_height: 480,
+                  image_format: 'jpeg',
+                  jpeg_quality: 90,
+                  flip_horiz: true
+              });
+              Webcam.attach('#my_camera');
+              document.getElementById('my_camera').style.display = '';
+              document.getElementById('pre_take_buttons').style.display = '';
+              document.getElementById('capture_buttons').style.display = '';
+              document.getElementById('post_take_buttons').style.display = 'none';
+              cameraEnabled = true;
+              photoCaptured = false;
+          }
+      }
+
+      var shutter = new Audio();
+      shutter.src = navigator.userAgent.match(/Firefox/) ? '/static/shutter.ogg' : '/static/shutter.mp3';
+
+      function preview_snapshot() {
+          try { shutter.currentTime = 0; } catch(e) {;}
+          shutter.play();
+          Webcam.freeze();
+          Webcam.snap(function(data_uri) {
+              document.getElementById('results').innerHTML = '<img src="' + data_uri + '"/>';
+              document.getElementById('pre_take_buttons').style.display = '';
+              document.getElementById('capture_buttons').style.display = 'none';
+              document.getElementById('post_take_buttons').style.display = '';
+              document.getElementById('save-button').style.display = '';
+              document.getElementById('results').style.display = '';
+              document.getElementById('my_camera').style.display = 'none';
+              photoCaptured = true;
+          });
+      }
+
+      function retry_capture() {
+        cameraEnabled = true;
+        document.getElementById('results').style.display = 'none';
+        document.getElementById('pre_take_buttons').style.display = '';
+        document.getElementById('capture_buttons').style.display = '';
+        document.getElementById('post_take_buttons').style.display = 'none';
+        document.getElementById('my_camera').style.display = ''; // Menampilkan kembali kamera
+        photoCaptured = false;
+}
+
+saveButton = document.getElementById("save-button");
+saveButton.addEventListener('click', function() {
+  save_photo()
+});
+
+
+function save_photo() {
+    if (cameraEnabled) {
+        Webcam.snap(function(data_uri) {
+            console.log(data_uri);
+
+            // Simpan data gambar dalam hidden input sebelum submit
+            document.getElementById('preview-image').src = data_uri;
+            document.getElementById('hidden-data-uri').value = data_uri;
+            
+
+            // Nonaktifkan kamera dan sembunyikan elemen-elemen setelah menyimpan foto
+            document.getElementById('my_camera').style.display = 'none';
+            document.getElementById('pre_take_buttons').style.display = '';
+            document.getElementById('capture_buttons').style.display = 'none';
+            document.getElementById('post_take_buttons').style.display = 'none';
+            document.getElementById('results').style.display = 'none';
+            document.getElementById('preview-image').style.display = 'none';
+            cameraEnabled = false;
+            photoCaptured = false;
+            Webcam.reset();
+
+            // Sembunyikan tombol "SAVE" setelah menyimpan
+            var saveButtons = document.getElementsByClassName('btn-success'); // Mengambil elemen dengan class 'btn-success'
+            for (var i = 0; i < saveButtons.length; i++) {
+                if (saveButtons[i].value === 'SAVE') {
+                    saveButtons[i].style.display = 'none'; // Menyembunyikan tombol "SAVE"
+                }
+            }
+        });
+    } else {
+        console.log('Kamera belum di-enable.');
+        // Tambahkan logika lainnya jika perlu
+    }
+}
+// function save_photo() {
+//     if (cameraEnabled) {
+//         Webcam.snap(function(data_uri) {
+//             console.log(data_uri);
+
+//             // Kirim dataURI ke server Flask menggunakan fetch
+//             fetch('/predict', {
+//                 method: 'POST',
+//                 headers: {
+//                     'Content-Type': 'application/json',
+//                 },
+//                 body: JSON.stringify({ dataURI: data_uri }), // Kirim dataURI sebagai JSON
+//             })
+//             .then(response => response.json())
+//             .then(data => {
+//                 console.log('Respon dari server:', data);
+//                 // Lakukan tindakan lain berdasarkan respon dari server jika perlu
+//             })
+//             .catch(error => {
+//                 console.error('Gagal mengirim data:', error);
+//                 // Tangani kesalahan jika ada
+//             });
+//         });
+//     } else {
+//         console.log('Kamera belum di-enable.');
+//         // Lakukan tindakan lain jika kamera belum di-enable
+//     }
+// }
+
+</script>
+</body>
+
+</html>
